@@ -9,3 +9,26 @@ java_binary(
     "HelloBazelBootcamp.java"
   ],
 )
+
+java_library(
+  name = "java-logging-client-library",
+  srcs = [
+    "JavaLoggingClientLibrary.java"
+  ],
+  deps = [
+    "//proto/logger:logger_java_proto",
+    "//proto/logger:logger_java_grpc",
+    "@io_grpc_grpc_java//core",
+    "@io_grpc_grpc_java//netty"
+  ]
+)
+
+java_binary(
+  name = "JavaLoggingClient",
+  srcs = [
+    "JavaLoggingClient.java"
+  ],
+  deps = [
+    ":java-logging-client-library"
+  ],
+)
