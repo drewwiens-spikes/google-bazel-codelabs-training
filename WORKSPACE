@@ -82,3 +82,20 @@ install_bazel_dependencies()
 load("@npm_bazel_typescript//:index.bzl", "ts_setup_workspace")
 ts_setup_workspace()
 # END: typescript dependencies
+
+http_archive(
+    name = "bazel_toolchains",
+    sha256 = "a1e273b6159ae858f53046f5bab9678cffa82a72f0bf0c0a9e4af8fddb91209c",
+    strip_prefix = "bazel-toolchains-0.29.6",
+    urls = [
+        "https://github.com/bazelbuild/bazel-toolchains/releases/download/0.29.6/bazel-toolchains-0.29.6.tar.gz",
+        "https://mirror.bazel.build/github.com/bazelbuild/bazel-toolchains/archive/0.29.6.tar.gz",
+    ],
+)
+
+load("@bazel_toolchains//rules:rbe_repo.bzl", "rbe_autoconfig")
+
+# Creates a default toolchain config for RBE.
+# Use this as is if you are using the rbe_ubuntu16_04 container,
+# otherwise refer to RBE docs.
+rbe_autoconfig(name = "rbe_default")
