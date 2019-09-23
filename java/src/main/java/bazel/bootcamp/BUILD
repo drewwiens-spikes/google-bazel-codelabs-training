@@ -32,3 +32,12 @@ java_binary(
     ":java-logging-client-library"
   ],
 )
+
+java_test(
+  name = "JavaLoggingClientTest",
+  srcs = ["JavaLoggingClientTest.java"],
+  deps = [
+    ":java-logging-client-library",
+    "@junit_junit//jar",
+  ],
+)
